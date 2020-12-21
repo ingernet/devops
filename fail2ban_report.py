@@ -18,8 +18,10 @@ banned_ips = {
 }
 
 def inc_count(ip):
-    """If IP already exists in banned_ips dict, increment its frequency by one. """
+    """
+    If IP already exists in banned_ips dict, increment its frequency by one.
     Otherwise, just add it.
+    """
     if ip in banned_ips.keys():
         banned_ips[ip] = int(banned_ips[ip]) + 1
     else:
@@ -41,7 +43,8 @@ for x in banresult:
 
 # sort your list of banned IPs from highest to lowest.
 q = sorted(banned_ips.items(), key=lambda item: item[1], reverse=True)
-print("{} IPs have hit us in the last month; the ones listed below hit us more than 100 times:".format(len(q)))
+r = sum(banned_ips.values())
+print("{} IPs have hit us {} times in the last month; the ones listed below hit us more than 100 times each:".format(len(q), r))
 for key, value in q:
     if value > 100:
         print(key, ":", value)
